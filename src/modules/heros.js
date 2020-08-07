@@ -43,3 +43,7 @@ const superHeros = {
 //using dot notation to access superHero object elements
 console.log(superHeros.homeTown)
 console.log(superHeros.squadName)
+
+//Accessing inner values
+console.log(superHeros.members)
+console.log(superHeros['members'][1].powers)

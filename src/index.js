@@ -1,5 +1,3 @@
-const header = document.querySelector('header');
-const section = document.querySelector('section');
 
 // Request URL from github
 let requestURL = 'https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json';
@@ -15,20 +13,30 @@ request.responseType = 'json';
 request.send();
 
 request.onload = () => {
-    const superheroes = request.response;
-    populateHeader(superheroes);
+    const superHeroes = request.response;
+    console.log(superHeroes);
+    populateHeader(superHeroes);
     showHeroes(superHeroes);
 }
 
 const populateHeader = (jsonObject) => {
+    const header = document.getElementById('hd');
+
     const elemH1 = document.createElement('h1');
+    
     elemH1.textContent = jsonObject['squadName'];
 
     const elemPg = document.createElement('p');
     elemPg.textContent = `Hometown: ${jsonObject['homeTown']} // Formed: ${jsonObject['formed']}`;
+
+    console.log(header);
+
+    header.appendChild(elemH1);
+    header.appendChild(elemPg);
 }
 
 const showHeroes  = (jsonObject) => {
+    const section = document.getElementById('sc')
     const heroes = jsonObject['members'];
       
   for (let i = 0; i < heroes.length; i++) {
@@ -40,8 +48,8 @@ const showHeroes  = (jsonObject) => {
     const myList = document.createElement('ul');
 
     myH2.textContent = heroes[i].name;
-    myPara1.textContent = 'Secret identity: ' + heroes[i].secretIdentity;
-    myPara2.textContent = 'Age: ' + heroes[i].age;
+    myPara1.textContent = `Secret identity: ${heroes[i].secretIdentity}`;
+    myPara2.textContent = `Age: ${heroes[i].age}`;
     myPara3.textContent = 'Superpowers:';
         
     const superPowers = heroes[i].powers;

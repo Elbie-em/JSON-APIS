@@ -7,14 +7,20 @@ let request = new XMLHttpRequest();
 request.open('GET',requestURL);
 
 //setting the responseType to JSON, so that XHR knows that the server will be returning JSON, and that this should be converted behind the scenes into a JavaScript object
-request.responseType = 'json';
+//request.responseType = 'json';
+
+//setting the responseType to text, so that XHR knows that the server will be returning text, and that this should be converted behind the scenes into a JSON object
+request.responseType = 'text'; // now we're getting a string!
 
 //send the request with the send() method
 request.send();
 
 request.onload = () => {
-    const superHeroes = request.response;
-    console.log(superHeroes);
+    //before...
+    //const superHeroes = request.response;
+    //after...
+    const superHeroesText = request.response; // get the string from the response
+    const superHeroes = JSON.parse(superHeroesText); // convert it to an object
     populateHeader(superHeroes);
     showHeroes(superHeroes);
 }
@@ -28,8 +34,6 @@ const populateHeader = (jsonObject) => {
 
     const elemPg = document.createElement('p');
     elemPg.textContent = `Hometown: ${jsonObject['homeTown']} // Formed: ${jsonObject['formed']}`;
-
-    console.log(header);
 
     header.appendChild(elemH1);
     header.appendChild(elemPg);

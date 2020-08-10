@@ -4,7 +4,7 @@
 ![screenshot](./assets/scs-a.png)
 
 
-![screenshot](./assests/scs-b.png)
+![screenshot](./assets/scs-b.png)
 
 ## Built With
 

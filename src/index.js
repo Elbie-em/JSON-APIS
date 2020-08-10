@@ -16,4 +16,13 @@ request.send();
 
 request.onload = () => {
     const superheroes = request.response;
+    populateHeader(superheroes);
+}
+
+const populateHeader = (jsonObject) => {
+    const elemH1 = document.createElement('h1');
+    elemH1.textContent = jsonObject['squadName'];
+
+    const elemPg = document.createElement('p');
+    elemPg.textContent = `Hometown: ${jsonObject['homeTown']} // Formed: ${jsonObject['formed']}`;
 }
